@@ -447,7 +447,7 @@ func makeStatefulSetSpec(p v1alpha1.Prometheus, c *Config, ruleConfigMaps []*v1.
 							Handler:          probeHandler,
 							TimeoutSeconds:   probeTimeoutSeconds,
 							PeriodSeconds:    5,
-							FailureThreshold: 6,
+							FailureThreshold: 120, // Allow 10m for data recovery on startup
 						},
 						Resources: p.Spec.Resources,
 					}, {
